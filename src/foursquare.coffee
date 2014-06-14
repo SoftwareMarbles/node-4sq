@@ -9,9 +9,10 @@ class Foursquare
     date = new Date()
     month = date.getMonth() + 1
 
-    options.date = date.getFullYear()
-    options.date += (if month < 10 then '0' else '') + month
-    options.date += (if date.getDate() < 10 then '0' else '') + date.getDate()
+    if not options?.date
+      options.date = date.getFullYear()
+      options.date += (if month < 10 then '0' else '') + month
+      options.date += (if date.getDate() < 10 then '0' else '') + date.getDate()
 
   user: (userid, params, fn) ->
     userid = 'self' if not userid or parseInt(userid, 10) <= 0
